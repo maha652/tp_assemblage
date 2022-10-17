@@ -164,7 +164,29 @@ def get_sink_nodes(graph):
     
 
 def get_contigs(graph, starting_nodes, ending_nodes):
-    pass
+    
+    node_contig = []
+    for start in starting_nodes: 
+        for end in ending_nodes :
+            if list(nx.all_simple_paths(graph, starting_nodes, ending_nodes)) :
+                for path in list(nx.all_simple_paths(graph, starting_nodes, ending_nodes)) :
+                    print(path)
+                    node_contig.append(path)
+    return(node_contig)
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 def save_contigs(contigs_list, output_file):
     pass
