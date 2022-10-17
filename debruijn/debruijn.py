@@ -14,12 +14,19 @@
 """Perform assembly based on debruijn graph."""
 
 import argparse
+from email import header
+from itertools import count
 import os
+from re import L
 import sys
+from matplotlib.font_manager import weight_dict
+from nbformat import read
 import networkx as nx
 import matplotlib
 from operator import itemgetter
 import random
+
+from numpy import append
 random.seed(9001)
 from random import randint
 import statistics
@@ -69,20 +76,43 @@ def get_arguments():
     return parser.parse_args()
 
 
-def read_fastq(fastq_file):
-    pass
+def read_fastq(fastq_file ):
+    with open ( fastq_file , "rt") as  assemblage :
+        for line in assemblage :
+            yield next(assemblage).strip()
+            next(assemblage)
+            next(assemblage)
 
 
 def cut_kmer(read, kmer_size):
-    pass
+    for i in range(len(read)):
+        if (i + kmer_size) <= len(read):
+            yield read[i: (i + kmer_size)]
 
 
 def build_kmer_dict(fastq_file, kmer_size):
-    pass
+   
+    j = 0
 
+    kmer_dict = {}
+    for read in read_fastq(fastq_file ) :
+  
+      for kmer in cut_kmer(read, kmer_size) :
+        if kmer not in kmer_dict : 
+            kmer_dict[kmer] = kmer_dict.get(kmer, 1)
+        else :
+            kmer_dict[kmer]= kmer_dict[kmer] + 1 
+    return kmer_dict
+ 
 
 def build_graph(kmer_dict):
-    pass
+    G = nx.DiGraph()
+    
+    for i in kmer_dict :
+        G.add_edge(i[ 0 : -1] , i [1 :  ] ,weight = kmer_dict[i]) 
+    return (G)    
+  
+
 
 
 def remove_paths(graph, path_list, delete_entry_node, delete_sink_node):
