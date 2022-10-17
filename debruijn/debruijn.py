@@ -17,6 +17,8 @@ import argparse
 from email import header
 from itertools import count
 import os
+from pickle import FALSE
+from platform import node
 from re import L
 import sys
 from matplotlib.font_manager import weight_dict
@@ -116,7 +118,8 @@ def build_graph(kmer_dict):
 
 
 def remove_paths(graph, path_list, delete_entry_node, delete_sink_node):
-    pass
+     pass  
+
 
 def std(data):
     pass
@@ -142,10 +145,23 @@ def solve_out_tips(graph, ending_nodes):
     pass
 
 def get_starting_nodes(graph):
-    pass
+    node = []
+    for i in  graph.nodes():
+        if not list(graph.predecessors(i)) :
+            node.append(i)
+    return(node)
+
+              
 
 def get_sink_nodes(graph):
-    pass
+    node_sortie = []
+    for i in  graph.nodes():
+        if not list(graph.successors(i)) :
+            node_sortie.append(i)
+    return(node_sortie)
+
+
+    
 
 def get_contigs(graph, starting_nodes, ending_nodes):
     pass
