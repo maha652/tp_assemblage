@@ -168,14 +168,14 @@ def get_contigs(graph, starting_nodes, ending_nodes):
     node_contig = []
     for start in starting_nodes: 
         for end in ending_nodes :
-            for path in nx.all_simple_paths(graph, starting_nodes, ending_nodes) :
+            for path in nx.all_simple_paths(graph, start, end) :
                 contig=path[0]
                 for node in path[1:]:
                     contig=contig+node[-1]
                 contig_size=len(contig)
                 node_contig.append((contig, contig_size))
                 
-    return(node_contig)
+    return node_contig
 
     
 
