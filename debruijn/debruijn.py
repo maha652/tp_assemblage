@@ -35,13 +35,13 @@ import statistics
 import matplotlib.pyplot as plt
 matplotlib.use("Agg")
 
-__author__ = "Your Name"
+__author__ = "Maha GRAA"
 __copyright__ = "Universite Paris Diderot"
-__credits__ = ["Your Name"]
+__credits__ = ["Maha GRAA"]
 __license__ = "GPL"
 __version__ = "1.0.0"
-__maintainer__ = "Your Name"
-__email__ = "your@email.fr"
+__maintainer__ = "Maha GRAA"
+__email__ = "mahagraa.geniebio@gmail.com"
 __status__ = "Developpement"
 
 def isfile(path):
