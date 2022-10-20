@@ -180,7 +180,17 @@ def get_contigs(graph, starting_nodes, ending_nodes):
     
 
 def save_contigs(contigs_list, output_file):
-    pass
+    output_file=open(output_file, "w")
+
+    for i in range(len(contigs_list)):
+        contig_tuple=contigs_list[i]
+        contig=contig_tuple[0]
+        contig_size=contig_tuple[1]
+        output_file.write('>contig_{0} len={1}'.format(i,contig_size)+'\n')
+        output_file.write(fill(contig)+'\n')
+
+    output_file.close()
+    return 0
 
 
 def fill(text, width=80):
