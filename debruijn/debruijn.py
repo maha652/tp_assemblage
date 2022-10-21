@@ -116,13 +116,12 @@ def build_graph(kmer_dict):
   
 
 
-
 def remove_paths(graph, path_list, delete_entry_node, delete_sink_node):
      pass  
 
 
 def std(data):
-    pass
+    return(statistics.stdev(data))
 
 
 def select_best_path(graph, path_list, path_length, weight_avg_list, 
