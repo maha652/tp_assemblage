@@ -117,8 +117,15 @@ def build_graph(kmer_dict):
 
 
 def remove_paths(graph, path_list, delete_entry_node, delete_sink_node):
-     pass  
-
+    
+  for nodes in path_list:
+        if delete_entry_node:
+            graph.remove_node(nodes[0])
+        if delete_sink_node:
+            graph.remove_node(nodes[-1])
+        for node in nodes[1:-1]:
+            graph.remove_node(node)
+  return graph
 
 def std(data):
     return(statistics.stdev(data))
