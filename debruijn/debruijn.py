@@ -145,7 +145,10 @@ def select_best_path(graph, path_list, path_length, weight_avg_list,
     return graph
 
 def path_average_weight(graph, path):
-    pass
+    weigth = []
+    for i in range(len(path)-1):
+        weigth.append(graph.edges[path[i], path[i+1]]['weight'])
+    return statistics.mean(weigth)
 
 def solve_bubble(graph, ancestor_node, descendant_node):
     pass
