@@ -151,7 +151,14 @@ def path_average_weight(graph, path):
     return statistics.mean(weigth)
 
 def solve_bubble(graph, ancestor_node, descendant_node):
-    pass
+    list_path = list(nx.all_simple_paths (graph, ancestor_node, descendant_node))
+    length_path = [len(path) for path in list_path]
+    list_weight_avg_ = [path_average_weight(graph, path) for path in list_path]
+    graph = select_best_path(graph, list_path, length_path, list_weight_avg)
+    return graph
+  
+
+
 
 def simplify_bubbles(graph):
     pass
@@ -198,6 +205,7 @@ def get_contigs(graph, starting_nodes, ending_nodes):
     
 
 def save_contigs(contigs_list, output_file):
+
     output_file=open(output_file, "w")
 
     for i in range(len(contigs_list)):
@@ -209,7 +217,6 @@ def save_contigs(contigs_list, output_file):
 
     output_file.close()
     return 0
-
 
 def fill(text, width=80):
     """Split text with a line return to respect fasta format"""
