@@ -151,10 +151,10 @@ def path_average_weight(graph, path):
     return statistics.mean(weigth)
 
 def solve_bubble(graph, ancestor_node, descendant_node):
-    list_path = list(nx.all_simple_paths (graph, ancestor_node, descendant_node))
-    length_path = [len(path) for path in list_path]
-    list_weight_avg_ = [path_average_weight(graph, path) for path in list_path]
-    graph = select_best_path(graph, list_path, length_path, list_weight_avg)
+    path_list = list(nx.all_simple_paths (graph, ancestor_node, descendant_node))
+    path_length = [len(path) for path in path_list]
+    weight_avg_list = [path_average_weight(graph, path) for path in path_list]
+    graph = select_best_path(graph, path_list, path_length, weight_avg_list)
     return graph
   
 
