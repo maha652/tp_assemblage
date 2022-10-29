@@ -182,7 +182,21 @@ def simplify_bubbles(graph):
     return (graph)
    
 def solve_entry_tips(graph, starting_nodes):
-    pass
+   
+    path_l = []
+    path_len = []
+    weight_avg = []
+    for node in graph.nodes:
+        predecessors = list(graph.predecessors(node))
+        if len(predecessors) > 1:
+            for start in starting_nodes:
+                path_l += list(nx.all_simple_paths(graph, start, node))
+    if len(path_l) != 0:
+        for path in path_l:
+            path_len.append(len(path))
+            weight_avg.append(path_average_weight(graph, path))
+        graph = select_best_path(digraph, path_l, path_len, weight_avg, delete_entry_node=True, delete_sink_node=False)
+    return graph
 
 def solve_out_tips(graph, ending_nodes):
     pass
