@@ -195,7 +195,7 @@ def solve_entry_tips(graph, starting_nodes):
         for path in path_l:
             path_len.append(len(path))
             weight_avg.append(path_average_weight(graph, path))
-        graph = select_best_path(digraph, path_l, path_len, weight_avg, delete_entry_node=True, delete_sink_node=False)
+        graph = select_best_path(graph, path_l, path_len, weight_avg, delete_entry_node=True, delete_sink_node=False)
     return graph
 
 def solve_out_tips(graph, ending_nodes):
