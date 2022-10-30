@@ -108,11 +108,10 @@ def build_kmer_dict(fastq_file, kmer_size):
  
 
 def build_graph(kmer_dict):
-    G = nx.DiGraph()
-    
-    for i in kmer_dict :
-        G.add_edge(i[ 0 : -1] , i [1 :  ] ,weight = kmer_dict[i]) 
-    return (G)    
+    graph= nx.DiGraph()
+    for i  in kmer_dict :
+        graph.add_edge(i[ 0 : -1] , i [1 :  ] ,weight=kmer_dict[i]) 
+    return (graph)    
   
 
 
@@ -250,19 +249,12 @@ def get_contigs(graph, starting_nodes, ending_nodes):
     
 
 def save_contigs(contigs_list, output_file):
+  
+ with open(output_file, "w") as out_file:
+        for i in range(len(contigs_list)):
+           out_file.write(">contig_" + str(i) + " len=" + str(contigs_list[i][1]) + "\n" + textwrap.fill((contigs_list[i][0]), width=80) + "\n")
 
-    output_file=open(output_file, "w")
-
-    for i in range(len(contigs_list)):
-        contig_tuple=contigs_list[i]
-        contig=contig_tuple[0]
-        contig_size=contig_tuple[1]
-        output_file.write('>contig_{0} len={1}'.format(i,contig_size)+'\n')
-        output_file.write(fill(contig)+'\n')
-
-    output_file.close()
-    return 0
-
+    
 def fill(text, width=80):
     """Split text with a line return to respect fasta format"""
     return os.linesep.join(text[i:i+width] for i in range(0, len(text), width))
