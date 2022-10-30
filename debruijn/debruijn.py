@@ -250,7 +250,7 @@ def get_contigs(graph, starting_nodes, ending_nodes):
 
 def save_contigs(contigs_list, output_file):
   
- with open(output_file, "w") as out_file:
+    with open(output_file, "w") as out_file:
         for i in range(len(contigs_list)):
            out_file.write(">contig_" + str(i) + " len=" + str(contigs_list[i][1]) + "\n" + textwrap.fill((contigs_list[i][0]), width=80) + "\n")
 
